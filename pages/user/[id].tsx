@@ -7,6 +7,14 @@ type User = {
   t: string,
 };
 
+// type Respond = {
+//   records: User[],
+// }
+
+interface Respond {
+  records?: User[];
+}
+
 
 
 const UserPage: NextPage<{
@@ -48,6 +56,8 @@ const UserPage: NextPage<{
 //   };
 // };
 
+
+
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   res,
@@ -65,7 +75,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   );
 
   // console.log(result);
-  const respond = await result.json();
+  const respond: Respond = await result.json();
 
   const user = respond.records.find(product => product.id == id);
   // const user: User = await result.json();
