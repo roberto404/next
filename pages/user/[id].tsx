@@ -13,6 +13,7 @@ const UserPage: NextPage<{
   user: User
 }> = (props) =>
 {
+  console.log(props);
   return (
     <div>
       <h1>User ID = {props.user.id}</h1>
@@ -54,12 +55,19 @@ export const getServerSideProps: GetServerSideProps = async ({
 {
   const { id } = params;
   
+  // const result = await fetch(
+  //   `http://localhost:3000/api/user/${id}`
+  // );
   const result = await fetch(
-    `http://localhost:3000/api/user/${id}`
+    `https://kontakt2.rs.hu/api/v3/product/`
+    // `https://api.github.com/repos/vercel/next.js`
+    // `http://localhost:3000/api/user/${id}`
   );
 
   // console.log(result);
-  const user = await result.json();
+  const respond = await result.json();
+
+  const user = respond.records.find(product => product.id == id);
   // const user: User = await result.json();
 
   return {
