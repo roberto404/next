@@ -71,13 +71,28 @@ const UserIndexPage = (props)=>{
     });
 };
 const getStaticProps = async ()=>{
-    const users = (await __webpack_require__.e(/* import() */ 193).then(__webpack_require__.t.bind(__webpack_require__, 6193, 19))).default.records;
+    const users = (await __webpack_require__.e(/* import() */ 193).then(__webpack_require__.t.bind(__webpack_require__, 6193, 19))).default.records.slice(0, 100);
     return {
         props: {
             users
         }
     };
 };
+// export const getServerSideProps: GetServerSideProps = async ({
+//   params,
+//   res,
+// }) =>
+// {
+//   // const { id } = params;
+//   const result = await fetch(
+//     'http://localhost:3000/stock.json'
+//   );
+//   console.log(result);
+//   const users: User = await result.json().records;
+//   return {
+//     props: { users }
+//   }
+// }
 /* harmony default export */ const user = (UserIndexPage);
 
 ;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?page=%2Fuser&preferredRegion=&absolutePagePath=private-next-pages%2Fuser%2Findex.tsx&absoluteAppPath=next%2Fdist%2Fpages%2F_app&absoluteDocumentPath=next%2Fdist%2Fpages%2F_document&middlewareConfigBase64=e30%3D!

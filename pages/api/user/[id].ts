@@ -2,6 +2,12 @@ import { NextApiHandler } from "next";
 
 import data from '../../../lib/stock.json'
 
+// const data = {
+//   records: [
+//     { id: '0000AJAN01', t: 'hello' },
+//   ]
+// }
+
 const user: NextApiHandler = (req, res) =>
 {
   const { id } = req.query;

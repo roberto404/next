@@ -1,11 +1,14 @@
 import Link from 'next/link';
-import { GetStaticProps, NextPage } from 'next';
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next';
+import fetch from 'node-fetch';
+
+type User = {
+  id: string,
+  t: string,
+};
 
 const UserIndexPage: NextPage<{
-  users: {
-    id: string,
-    t: string,
-  }[]
+  users: User[]
 }> = (props) =>
 {
   return (
@@ -23,11 +26,30 @@ const UserIndexPage: NextPage<{
 export const getStaticProps: GetStaticProps = 
   async () =>
   {
-    const users = (await import('../../lib/stock.json')).default.records;
+    const users = (await import('../../lib/stock.json')).default.records.slice(0, 100);
 
     return {
       props:  { users },
     }
   }
+
+// export const getServerSideProps: GetServerSideProps = async ({
+//   params,
+//   res,
+// }) =>
+// {
+//   // const { id } = params;
+//   const result = await fetch(
+//     'http://localhost:3000/stock.json'
+//   );
+
+//   console.log(result);
+//   const users: User = await result.json().records;
+
+//   return {
+//     props: { users }
+//   }
+// }
+
 
 export default UserIndexPage;
